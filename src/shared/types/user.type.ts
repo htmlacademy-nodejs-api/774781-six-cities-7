@@ -1,9 +1,12 @@
-export type UserType = 'common' | 'pro';
+export enum UserType {
+  Common = 'Common',
+  Pro = 'Pro',
+}
 
 export type User = {
   name: string,
   email: string,
-  avatarPath?: string,
+  avatarPath: string,
   password: string,
   type: UserType,
 }
