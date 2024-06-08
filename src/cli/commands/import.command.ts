@@ -1,6 +1,6 @@
 import { Command } from './command.interface.js';
 import { TSVFileReader } from '../../shared/libs/file-reader/index.js';
-import { Offer } from '../../shared/types/offer.type.js';
+import { Offer } from '../../shared/types/index.js';
 import { getErrorMessage, getMongoURI } from '../../shared/helpers/index.js';
 import { DefaultUserService, UserModel, UserService } from '../../shared/modules/user/index.js';
 import { DatabaseClient, MongoDatabaseClient } from '../../shared/libs/database-client/index.js';
