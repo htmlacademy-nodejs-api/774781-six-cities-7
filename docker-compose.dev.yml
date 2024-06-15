@@ -1,7 +1,6 @@
 services:
   db:
     image: mongo:4.2
-    restart: always
     container_name: six-cities_mongo_db
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
@@ -13,7 +12,6 @@ services:
 
   db_ui:
     image: mongo-express:1.0.2-20
-    restart: always
     container_name: six-cities_mongo_express
     ports:
       - 8081:8081
