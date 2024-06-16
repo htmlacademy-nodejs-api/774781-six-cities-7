@@ -32,6 +32,22 @@ export class GenerateCommand implements Command {
 
   public async execute(...parameters: string[]): Promise<void> {
     const [count, filepath, url] = parameters;
+
+    if (!count) {
+      console.info('Missing <count> parameter, how many offers do you need to generate ?');
+      return;
+    }
+
+    if (!filepath) {
+      console.info('Missing <filepath> parameter, which file will we write to?');
+      return;
+    }
+
+    if (!url) {
+      console.info('Missing <url> parameter, where do we get the helpers for data generation?');
+      return;
+    }
+
     const offerCount = Number.parseInt(count, 10);
 
     try {

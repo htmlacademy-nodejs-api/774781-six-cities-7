@@ -8,7 +8,7 @@ import {
   getRandomItems,
 } from '../../helpers/index.js';
 
-import { CoordinatesCities } from '../../types/index.js';
+import { City, CoordinatesCities } from '../../types/index.js';
 
 const MIN_PRICE = 100;
 const MAX_PRICE = 100000;
@@ -35,7 +35,7 @@ export class TSVOfferGenerator implements OfferGenerator {
       .subtract(generateRandomValue(FIRST_WEEK_DAY, LAST_WEEK_DAY), 'day')
       .toISOString();
 
-    const city = getRandomItem(this.mockData.cities);
+    const city = getRandomItem(this.mockData.cities) as City;
     const preview = 'preview.jpg';
     const photos = this.mockData.photos.join(';');
     const isPremium = generateRandomValue(0, 1);
