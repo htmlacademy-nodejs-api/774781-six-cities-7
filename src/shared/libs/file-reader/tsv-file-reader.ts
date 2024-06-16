@@ -2,7 +2,16 @@ import EventEmitter from 'node:events';
 import { createReadStream } from 'node:fs';
 
 import { FileReader } from './file-reader.interface.js';
-import { Offer, User, UserType, PropertyType, Amenities, Coordinates } from '../../types/index.js';
+import {
+  User,
+  Amenities,
+  City,
+  Offer,
+  Photos,
+  PropertyType,
+  Coordinates,
+  UserType
+} from '../../types/index.js';
 
 export class TSVFileReader extends EventEmitter implements FileReader {
   private CHUNK_SIZE = 16384; // 16KB
@@ -42,9 +51,9 @@ export class TSVFileReader extends EventEmitter implements FileReader {
       title,
       description,
       postDate: new Date(postDate),
-      city,
+      city: city as City,
       preview,
-      photos: photos.split(';'),
+      photos: photos.split(';') as Photos,
       isPremium: Boolean(Number.parseInt(isPremium, 10)),
       isFavorite: Boolean(Number.parseInt(isFavorite, 10)),
       rating: Number.parseInt(rating, 10),
@@ -53,7 +62,7 @@ export class TSVFileReader extends EventEmitter implements FileReader {
       guestsCount: Number.parseInt(guestsCount, 10),
       price: Number.parseInt(price, 10),
       amenities: amenities.split(';') as Amenities[],
-      author: this.parseUser(name, email, avatarPath, password, userType) as User,
+      user: this.parseUser(name, email, avatarPath, password, userType) as User,
       coordinates: this.parseCoordinates(latitude, longitude) as Coordinates,
     };
   }
@@ -94,7 +103,10 @@ export class TSVFileReader extends EventEmitter implements FileReader {
         importedRowCount += 1;
 
         const parserOffer = this.parseLineToOffer(completeRow);
-        this.emit('line', parserOffer);
+
+        await new Promise((resolve) => {
+          this.emit('line', parserOffer, resolve);
+        });
       }
     }
 

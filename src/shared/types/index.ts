@@ -1,4 +1,14 @@
-export { User, UserType } from './user.type.js';
-export { Offer, PropertyType, Amenities, Coordinates } from './offer.type.js';
+export { User, UserType } from './user/index.js';
+export {
+  Offer,
+  PropertyType,
+  Amenities,
+  CoordinatesCities,
+  Coordinates,
+  Cities,
+  City,
+  Photos,
+} from './offer/index.js';
+
 export { MockServerData } from './mock-server-data.type.js';
 export { Component } from './component.enum.js';

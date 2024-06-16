@@ -1,4 +1,4 @@
-export type UserType = 'common' | 'pro';
+import { UserType } from './user-type.enum.js';
 
 export type User = {
   name: string,
